@@ -1,19 +1,12 @@
 homeRegion: us-east-1
+useV2Stacks: true
 enabledRegions:
   - us-east-1
 managementAccountAccessRole: AWSControlTowerExecution
-cloudwatchLogRetentionInDays: 3653
+cloudwatchLogRetentionInDays: 365
 cdkOptions:
   centralizeBuckets: true
   useManagementAccessRole: true
-snsTopics:
-  deploymentTargets:
-    organizationalUnits:
-      - Root
-  topics:
-    - name: Security
-      emailAddresses:
-        - psanthg+aftaccnt@amazon.com
 terminationProtection: true
 enableOptInRegions: false
 controlTower:
@@ -42,36 +35,8 @@ logging:
     excludeAccounts: []
     lifecycleRules: []
     attachPolicyToIamRoles: []
-  accessLogBucket:
-    lifecycleRules:
-      - enabled: true
-        abortIncompleteMultipartUpload: 7
-        expiration: 1000
-        noncurrentVersionExpiration: 1000
-        transitions:
-          - storageClass: GLACIER_IR
-            transitionAfter: 365
-        noncurrentVersionTransitions:
-          - storageClass: GLACIER_IR
-            transitionAfter: 365
-  elbLogBucket:
-    lifecycleRules:
-      - enabled: true
-        abortIncompleteMultipartUpload: 7
-        expiration: 1000
-        noncurrentVersionExpiration: 1000
-        transitions:
-          - storageClass: GLACIER_IR
-            transitionAfter: 365
-        noncurrentVersionTransitions:
-          - storageClass: GLACIER_IR
-            transitionAfter: 365  
-  sharedServicesBucket:
-  bucketName: "my-landingzone-data-bucket"
-  region: "us-east-1" 
-  accessControl: "Private" 
-                      
+  cloudwatchLogs:
+    enable: false
 tags: []
-iamRoleSsmParameters: []
 
 
